@@ -1,6 +1,6 @@
-# Laravel Rest API simple exercise 
+# API REST simple en Laravel  
 
-Following we have a sequence of requests that will be used to test the API.
+Seguiremos la siguiente secuencia de peticiones para testear la API
 
 ## Reset de las cuentas
 

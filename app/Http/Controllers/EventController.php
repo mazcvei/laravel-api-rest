@@ -76,7 +76,5 @@ class EventController extends Controller
                     'balance'=>$accountDestination->balance,
             ]
         ],201);
-
-
     }
 }
