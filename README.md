@@ -2,7 +2,7 @@
 
 Following we have a sequence of requests that will be used to test the API.
 
-## Reset state before starting tests
+## Reset de las cuentas
 
 ```
 POST /reset
@@ -11,7 +11,7 @@ POST /reset
 ```
 
 
-## Get balance for non-existing account
+## Obtener el balance de una cuenta no existente
 
 ```
 GET /balance?account_id=1234
@@ -19,7 +19,7 @@ GET /balance?account_id=1234
 404 0
 ```
 
-## Create account with initial balance
+## Crear cuenta con un balance inicial
 
 ```
 POST /event {"type":"deposit", "destination":"100", "amount":10}
@@ -27,7 +27,7 @@ POST /event {"type":"deposit", "destination":"100", "amount":10}
 201 {"destination": {"id":"100", "balance":10}}
 ```
 
-## Deposit into existing account
+## Hacer un depósito en una cuenta existente
 
 ```
 POST /event {"type":"deposit", "destination":"100", "amount":10}
@@ -35,7 +35,7 @@ POST /event {"type":"deposit", "destination":"100", "amount":10}
 201 {"destination": {"id":"100", "balance":20}}
 ```
 
-## Get balance for existing account
+## Obtener el balance de una cuenta no existente
 
 ```
 GET /balance?account_id=100
@@ -43,7 +43,7 @@ GET /balance?account_id=100
 200 20
 ```
 
-## Withdraw from non-existing account
+## Retirar depósito de una cuenta no existente
 
 ```
 POST /event {"type":"withdraw", "origin":"200", "amount":10}
@@ -51,7 +51,7 @@ POST /event {"type":"withdraw", "origin":"200", "amount":10}
 404 0
 ```
 
-## Withdraw from existing account
+## Retirar depósito de cuenta existente
 
 ```
 POST /event {"type":"withdraw", "origin":"100", "amount":5}
@@ -59,7 +59,7 @@ POST /event {"type":"withdraw", "origin":"100", "amount":5}
 201 {"origin": {"id":"100", "balance":15}}
 ```
 
-## Transfer from existing account
+## Transferencia desde una cuenta existente
 
 ```
 POST /event {"type":"transfer", "origin":"100", "amount":15, "destination":"300"}
@@ -67,7 +67,7 @@ POST /event {"type":"transfer", "origin":"100", "amount":15, "destination":"300"
 201 {"origin": {"id":"100", "balance":0}, "destination": {"id":"300", "balance":15}}
 ```
 
-## Transfer from non-existing account
+## Transferencia desde una cuenta no existente
 
 ```
 POST /event {"type":"transfer", "origin":"200", "amount":15, "destination":"300"}

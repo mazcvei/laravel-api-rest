@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 class EventController extends Controller
 {
     public function store(Request $request){
-        dd($request);
-        if($request->input('type')==='deposit'){
+       if($request->input('type')==='deposit'){
                 return $this->deposit(
                   $request->input('destination'),
                   $request->input('amount')
@@ -33,7 +32,6 @@ class EventController extends Controller
             $account=Account::firstOrCreate([//Si no lo encuentra, crea un registro (cuenta) nuevo
                 'id'=>$destionation
             ]);
-
             $account->balance+=$amount;
             $account->save();
             return response()->json(['destination'=>
@@ -42,11 +40,9 @@ class EventController extends Controller
                 'balance'=>$account->balance,
                 ]
             ],201);
-
-
     }
     private function withdraw($origin,$amount){
-        $account = Account::findOrFail($origin);
+        $account = Account::findOrFail($origin); //404 si no existe
         $account->balance-= $amount;
         $account->save();
         return response()->json(['origin'=>
